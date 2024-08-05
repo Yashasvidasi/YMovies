@@ -13,8 +13,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      screens: {
+        "h-sm": { raw: "(min-height: 640px)" },
+        "h-md": { raw: "(min-height: 768px)" },
+        "h-lg": { raw: "(min-height: 1024px)" },
+        "custom-md": "830px",
+        // Add more as needed
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };
 export default config;
