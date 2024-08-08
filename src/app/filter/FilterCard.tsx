@@ -1,9 +1,11 @@
 "use client";
 import React, { Component, useContext } from "react";
 import { motion, useAnimation } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const FilterCard = (props: {
   data: {
+    gender: any;
     profile_path: any;
     id: number;
     poster_path: any;
@@ -11,6 +13,7 @@ const FilterCard = (props: {
     name: any;
   };
 }) => {
+  const router = useRouter();
   const truncatetext = (s: string | undefined) => {
     if (s === undefined) {
       return null;
@@ -27,6 +30,17 @@ const FilterCard = (props: {
       className="relative h-fit m-3 flex flex-col hover:cursor-pointer"
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
+      onClick={() => {
+        if (props.data.name) {
+          if (props.data.gender) {
+            router.push(`/person/${props.data.id}`);
+          } else {
+            router.push(`/tv/${props.data.id}`);
+          }
+        } else {
+          router.push(`/movie/${props.data.id}`);
+        }
+      }}
     >
       <motion.div
         className="absolute top-0 left-0 w-full h-1 bg-red-500 rounded"

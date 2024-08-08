@@ -124,12 +124,16 @@ const MoviePage = ({ params }: { params: any }) => {
 
   const postRanking = async (operation: string) => {
     setIsUpdatingcomp(true); // Disable the button
+    let gg: string[] = [];
+    movie!.genres.forEach((item) => {
+      gg.push(item.name);
+    });
     const obj = {
       id: params.tvid,
       name: movie!.name,
       poster_path: movie!.poster_path,
       rating: 0,
-      genres: movie!.genres,
+      genres: gg,
     };
     try {
       const response = await fetch(`/api/updatedetails`, {
@@ -468,7 +472,15 @@ const MoviePage = ({ params }: { params: any }) => {
             ref={scrollToRef}
             onClick={handleclick}
             className="h-[600px] w-full  mb-12"
-          ></div>
+          >
+            {
+              <iframe
+                className="w-full h-full"
+                src={`https://vidsrc.xyz/embed/movie/${params.tvid}`}
+                allowFullScreen
+              />
+            }
+          </div>
 
           {reccomendation.length > 0 && (
             <div className="mb-10 flex flex-col">

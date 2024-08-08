@@ -268,6 +268,10 @@ const MoviePage = ({ params }: { params: any }) => {
     !hid ? postwatchhistory() : null;
   };
 
+  const handlecc = async () => {
+    console.log("clickedd");
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
   if (!movie) return <div>No movie data available</div>;
@@ -464,9 +468,23 @@ const MoviePage = ({ params }: { params: any }) => {
 
           <div
             ref={scrollToRef}
-            onClick={handleclick}
+            onClick={handlecc}
             className="h-[600px] w-full  mb-12"
-          ></div>
+          >
+            {/*<iframe
+              className="w-full h-full"
+              src={`https://multiembed.mov/?video_id=${params.movieid}&tmdb=1`}
+              allowFullScreen
+            />*/}
+
+            {
+              <iframe
+                className="w-full h-full"
+                src={`https://vidsrc.xyz/embed/movie/${params.movieid}`}
+                allowFullScreen
+              />
+            }
+          </div>
 
           {reccomendation.length > 0 && (
             <div className="mb-10 flex flex-col">

@@ -17,7 +17,7 @@ import {
 import { motion } from "framer-motion";
 import { FaRankingStar } from "react-icons/fa6";
 
-const InnerContainer = () => {
+const InnerContainer = ({ params }: { params: any }) => {
   const router = useRouter();
   const [name, setName] = useState("");
 
@@ -295,6 +295,9 @@ const InnerContainer = () => {
                 </div>
                 <motion.div
                   className="text-xl font-semibold flex flex-row justify-between hover:cursor-pointer"
+                  onClick={() => {
+                    router.push(`/user/${params}/rankingmovies`);
+                  }}
                   whileHover={{
                     scale: 1.06,
                   }}
@@ -334,6 +337,9 @@ const InnerContainer = () => {
                 </div>
                 <motion.div
                   className="text-xxl font-semibold flex flex-row justify-between hover:cursor-pointer"
+                  onClick={() => {
+                    router.push(`/user/${params}/rankingseries`);
+                  }}
                   whileHover={{
                     scale: 1.06,
                   }}
@@ -345,7 +351,7 @@ const InnerContainer = () => {
               <ul className="text-xl flex flex-col space-y-4">
                 {sortedSeriesRanking?.map((item, index) => (
                   <div
-                    className="w-full h-48 flex flex-row justify-between"
+                    className="w-full bg-slate-950 h-24 flex flex-row justify-between shadow-md p-2 shadow-black pt-3 rounded-lg"
                     key={index}
                   >
                     <div className="flex flex-row">
@@ -353,10 +359,12 @@ const InnerContainer = () => {
                         src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                         alt=""
                       />
-                      <div>{item.name}</div>
+                      <div className="ml-3">{item.title}</div>
                     </div>
                     {/* Placeholder for slider to set the rating */}
-                    <div>{item.rating === 0 ? "Not Rated" : item.rating}</div>
+                    <div className="text-nowrap self-end mb-3">
+                      {item.rating === 0 ? "Not Rated" : item.rating}
+                    </div>
                   </div>
                 ))}
               </ul>
