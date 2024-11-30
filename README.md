@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
-ymovies-by-yashasvi.vercel.app
+https://ymovies-by-yashasvi.vercel.app
 
 ```bash
 npm run dev
